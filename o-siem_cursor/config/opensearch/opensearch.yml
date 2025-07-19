@@ -1,0 +1,28 @@
+# OpenSearch Configuration for O-SIEM
+cluster.name: o-siem-cluster
+node.name: o-siem-node-1
+path.data: /usr/share/opensearch/data
+path.logs: /usr/share/opensearch/logs
+
+# Network settings
+network.host: 0.0.0.0
+http.port: 9200
+
+# Discovery settings
+discovery.type: single-node
+discovery.seed_hosts: []
+
+# Security settings (disabled for development)
+plugins.security.disabled: true
+plugins.security.ssl.http.enabled: false
+plugins.security.ssl.transport.enabled: false
+
+# Performance settings
+bootstrap.memory_lock: true
+indices.memory.index_buffer_size: 30%
+
+# Logging
+logger.level: INFO
+
+# Compatibility settings
+compatibility.override_main_response_version: true 

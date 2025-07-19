@@ -1,0 +1,4 @@
+FROM docker.elastic.co/logstash/logstash-oss:7.12.1
+
+# Install OpenSearch output plugin
+RUN logstash-plugin install logstash-output-opensearch

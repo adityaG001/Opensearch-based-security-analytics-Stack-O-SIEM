@@ -1,0 +1,12 @@
+type=SYSCALL msg=audit(1604994496.155:92733): arch=c000003e syscall=59 success=yes exit=0 a0=558e251634a0 a1=558e25162a50 a2=558e25160800 a3=8 items=2 ppid=29002 pid=1631 auid=1000 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=pts0 ses=104 comm="arp" exe="/usr/sbin/arp" key=(null)
+type=EXECVE msg=audit(1604994496.155:92733): argc=2 a0="arp" a1="-a"
+type=CWD msg=audit(1604994496.155:92733): cwd="/home/wardog"
+type=PATH msg=audit(1604994496.155:92733): item=0 name="/usr/sbin/arp" inode=13181 dev=08:01 mode=0100755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1604994496.155:92733): item=1 name="/lib64/ld-linux-x86-64.so.2" inode=29514 dev=08:01 mode=0100755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PROCTITLE msg=audit(1604994496.155:92733): proctitle=617270002D61
+type=SYSCALL msg=audit(1604994496.155:92734): arch=c000003e syscall=59 success=yes exit=0 a0=558e251634a0 a1=558e25163720 a2=558e25160800 a3=558e2500a010 items=2 ppid=29002 pid=1632 auid=1000 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=pts0 ses=104 comm="grep" exe="/bin/grep" key=(null)
+type=EXECVE msg=audit(1604994496.155:92734): argc=3 a0="grep" a1="-v" a2="^?"
+type=CWD msg=audit(1604994496.155:92734): cwd="/home/wardog"
+type=PATH msg=audit(1604994496.155:92734): item=0 name="/bin/grep" inode=61 dev=08:01 mode=0100755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PATH msg=audit(1604994496.155:92734): item=1 name="/lib64/ld-linux-x86-64.so.2" inode=29514 dev=08:01 mode=0100755 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=PROCTITLE msg=audit(1604994496.155:92734): proctitle=67726570002D76005E3F

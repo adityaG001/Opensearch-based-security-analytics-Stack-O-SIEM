@@ -1,0 +1,10 @@
+Jun 28 12:00:01 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=192.168.1.100 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54321 DF PROTO=TCP SPT=12345 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:02 o-siem-server dhcpd: DHCPREQUEST for 192.168.1.100 from 00:15:5d:01:ca:05 via eth0
+Jun 28 12:00:03 o-siem-server ntpd[1234]: kernel reports TIME_ERROR: 0x41: Clock Unsynchronized
+Jun 28 12:00:04 o-siem-server apache2[1235]: 192.168.1.100 - - [28/Jun/2024:12:00:04 +0000] "GET /index.html HTTP/1.1" 200 2326
+Jun 28 12:00:05 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=10.0.0.50 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54322 DF PROTO=TCP SPT=54321 DPT=80 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:06 o-siem-server dhcpd: DHCPACK on 192.168.1.101 to 00:15:5d:01:ca:06 via eth0
+Jun 28 12:00:07 o-siem-server ntpd[1234]: kernel reports TIME_ERROR: 0x41: Clock Unsynchronized
+Jun 28 12:00:08 o-siem-server apache2[1236]: 192.168.1.101 - - [28/Jun/2024:12:00:08 +0000] "POST /login.php HTTP/1.1" 302 0
+Jun 28 12:00:09 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=172.16.0.100 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54323 DF PROTO=TCP SPT=12345 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:10 o-siem-server dhcpd: DHCPREQUEST for 192.168.1.102 from 00:15:5d:01:ca:07 via eth0 

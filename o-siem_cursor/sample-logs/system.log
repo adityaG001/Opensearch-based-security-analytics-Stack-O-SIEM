@@ -1,0 +1,18 @@
+Jun 28 12:00:01 o-siem-server systemd: Starting system activity accounting tool...
+Jun 28 12:00:01 o-siem-server systemd: Started system activity accounting tool.
+Jun 28 12:00:02 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=192.168.1.100 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54321 DF PROTO=TCP SPT=12345 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:03 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=10.0.0.50 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54322 DF PROTO=TCP SPT=54321 DPT=80 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:04 o-siem-server systemd: Starting Apache2 Web Server...
+Jun 28 12:00:05 o-siem-server systemd: Started Apache2 Web Server.
+Jun 28 12:00:06 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=172.16.0.100 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54323 DF PROTO=TCP SPT=12345 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:07 o-siem-server systemd: Starting MySQL Community Server...
+Jun 28 12:00:08 o-siem-server systemd: Started MySQL Community Server.
+Jun 28 12:00:09 o-siem-server kernel: [UFW BLOCK] IN=eth0 OUT= MAC=00:15:5d:01:ca:05:00:15:5d:01:ca:06:08:00 SRC=203.0.113.10 DST=192.168.1.10 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=54324 DF PROTO=TCP SPT=12345 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
+Jun 28 12:00:10 o-siem-server systemd: Starting SSH daemon...
+Jun 28 12:00:11 o-siem-server systemd: Started SSH daemon. Jun 28 14:00:00 testhost testproc: Test log entry for O-SIEM pipeline
+Jun 28 15:00:00 testhost filebeat-test: Testing Filebeat log ingestion Sat Jun 28 16:30:10 IST 2025
+Jun 28 15:30:00 testhost filebeat-test: Testing log ingestion with Filebeat 7.10.0 Sat Jun 28 16:38:15 IST 2025
+Jun 28 15:45:00 testhost realtime-test: Testing real-time log ingestion Sat Jun 28 16:39:28 IST 2025
+Jun 28 15:50:00 testhost fluentbit-test: Testing Fluent Bit log ingestion Sat Jun 28 16:59:01 IST 2025
+Jun 28 15:55:00 testhost fluentbit-http-test: Testing Fluent Bit HTTP output Sat Jun 28 16:59:49 IST 2025
+Test log entry from host at $(date)

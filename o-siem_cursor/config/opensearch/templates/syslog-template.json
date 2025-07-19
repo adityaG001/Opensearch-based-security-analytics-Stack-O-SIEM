@@ -1,0 +1,31 @@
+{
+  "index_patterns": ["o-siem-*"] ,
+  "template": {
+    "settings": {
+      "number_of_shards": 1
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "log_type": { "type": "keyword" },
+        "syslog_timestamp": { "type": "date", "format": "MMM  d HH:mm:ss||MMM dd HH:mm:ss||yyyy-MM-dd HH:mm:ss||epoch_millis" },
+        "syslog_hostname": { "type": "keyword" },
+        "syslog_program": { "type": "keyword" },
+        "syslog_pid": { "type": "integer" },
+        "syslog_message": { "type": "text" },
+        "audit_type": { "type": "keyword" },
+        "audit_epoch": { "type": "double" },
+        "audit_seq": { "type": "integer" },
+        "audit_fields": { "type": "object", "enabled": true },
+        "json_data": { "type": "object", "enabled": true },
+        "source_ip": { "type": "ip" },
+        "dest_ip": { "type": "ip" },
+        "geoip": { "type": "object", "enabled": true }
+      }
+    }
+  },
+  "priority": 500,
+  "_meta": {
+    "description": "Template for O-SIEM syslog, audit, and generic log formats"
+  }
+} 

@@ -1,0 +1,124 @@
+version: '3.8'
+
+services:
+  # OpenSearch - Core search and analytics engine
+  opensearch:
+    image: opensearchproject/opensearch:1.3.12
+    container_name: o-siem-opensearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - plugins.security.disabled=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+      - ./config/opensearch/opensearch.yml:/usr/share/opensearch/config/opensearch.yml:ro
+      - ./config/opensearch/jvm.options:/usr/share/opensearch/config/jvm.options:ro
+    ports:
+      - "9200:9200"
+    networks:
+      - o-siem-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # OpenSearch Dashboards - Web interface
+  dashboards:
+    image: opensearchproject/opensearch-dashboards:1.3.12
+    container_name: o-siem-dashboards
+    environment:
+      - OPENSEARCH_HOSTS=http://opensearch:9200
+      - OPENSEARCH_SECURITY_DISABLED=true
+      - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
+    volumes:
+      - ./config/opensearch-dashboards/opensearch_dashboards.yml:/usr/share/opensearch-dashboards/config/opensearch_dashboards.yml:ro
+    ports:
+      - "5601:5601"
+    depends_on:
+      opensearch:
+        condition: service_healthy
+    networks:
+      - o-siem-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Logstash - Log processing pipeline with OpenSearch output plugin
+  logstash:
+    image: docker.elastic.co/logstash/logstash-oss:7.12.1
+    container_name: o-siem-logstash
+    environment:
+      - LS_JAVA_OPTS=-Xmx1g -Xms1g
+    volumes:
+      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - ./config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    ports:
+      - "8080:8080"
+      - "9600:9600"
+    depends_on:
+      opensearch:
+        condition: service_healthy
+    networks:
+      - o-siem-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9600/_node/stats || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Fluent Bit - Log shipper
+  fluentbit:
+    image: fluent/fluent-bit:latest
+    container_name: o-siem-fluentbit
+    volumes:
+      - ./config/fluent-bit/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+      - ./sample-logs/:/var/log/sample-logs/:ro
+      - fluentbit-data:/var/log
+    depends_on:
+      logstash:
+        condition: service_healthy
+    networks:
+      - o-siem-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep fluent-bit || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Syslog-ng - Syslog server
+  syslog-ng:
+    image: balabit/syslog-ng:latest
+    container_name: o-siem-syslog-ng
+    volumes:
+      - ./config/syslog-ng/syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro
+    ports:
+      - "514:514/udp"
+      - "5151:514/tcp"
+    networks:
+      - o-siem-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep syslog-ng || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+networks:
+  o-siem-network:
+    driver: bridge
+
+volumes:
+  opensearch-data:
+    driver: local
+  fluentbit-data:
+    driver: local 

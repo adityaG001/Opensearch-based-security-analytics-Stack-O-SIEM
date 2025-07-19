@@ -1,0 +1,18 @@
+# JVM Configuration for O-SIEM OpenSearch
+-Xms512m
+-Xmx512m
+
+# Garbage Collection
+-XX:+UseG1GC
+-XX:G1ReservePercent=25
+-XX:InitiatingHeapOccupancyPercent=75
+
+# Performance tuning
+-XX:+DisableExplicitGC
+-XX:+AlwaysPreTouch
+
+# Security
+-Djava.security.egd=file:/dev/urandom
+
+# Logging
+-Dlog4j2.formatMsgNoLookups=true 

@@ -1,0 +1,14 @@
+# Logstash Configuration for O-SIEM
+http.host: "0.0.0.0"
+
+# Pipeline settings
+pipeline.workers: 2
+pipeline.batch.size: 125
+pipeline.batch.delay: 50
+
+# Queue settings
+queue.type: memory
+queue.max_events: 1000
+
+# Logging
+log.level: debug 
